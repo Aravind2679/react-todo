@@ -4,9 +4,10 @@ import {AiFillEdit,AiFillDelete,AiOutlineCheckCircle} from "react-icons/ai";
 
 function Task({ task, index, completeTask, removeTask,editTask }) 
 {
-  console.log(task);
+ 
   const [newName, setNewName] = useState('');
   const [isEditing, setEditing] = useState(false);
+  console.log(isEditing+" "+task.title);
   const view= (<div
                   className={task.completed ? "task completed" : "task not-completed" }
                   style={{ textDecoration: task.completed ? "line-through" : "" }}
@@ -29,6 +30,7 @@ function Task({ task, index, completeTask, removeTask,editTask })
 
     function handleSubmit(e) {
       e.preventDefault();
+      if(newName.length>0)
       editTask(task.id,newName);
       setNewName("");
       setEditing(false);
